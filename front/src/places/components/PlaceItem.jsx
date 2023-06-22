@@ -4,7 +4,7 @@ import Card from "../../shared/components/UIElements/Card";
 import Button from "../../shared/components/FormElements/Button";
 import Modal from "../../shared/components/UIElements/Modal";
 import { AuthContext } from "../../shared/context/auth-context";
-import "./PlaceItem.css";
+import "./PlaceItem.scss";
 
 const PlaceItem = (props) => {
 	const auth = useContext(AuthContext);

@@ -1,0 +1,51 @@
+.user-item {
+	width: calc(45% - 2rem);
+	min-width: 17.5rem;
+	margin: 1rem;
+
+	&:hover h2,
+	&:active h2,
+	&:hover h3,
+	&:active h3 {
+		color: #292929;
+	}
+
+	a {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+		padding: 1rem;
+		color: white;
+		text-decoration: none;
+		background: #292929;
+
+		&:hover,
+		&:active {
+			background: #ffd900;
+		}
+	}
+
+	&__content {
+		padding: 0;
+	}
+
+	&__image {
+		width: 4rem;
+		height: 4rem;
+		margin-right: 1rem;
+	}
+
+	&__info {
+		h2 {
+			margin: 0 0 0.5rem 0;
+			color: #ffd900;
+			font-size: 1.5rem;
+			font-weight: normal;
+		}
+
+		h3 {
+			margin: 0;
+		}
+	}
+}

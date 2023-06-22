@@ -1,0 +1,45 @@
+.main-navigation {
+	&__menu-btn {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		width: 3rem;
+		height: 3rem;
+		margin-right: 2rem;
+		border: none;
+		background: transparent;
+		cursor: pointer;
+
+		@media (min-width: 768px) {
+			display: none;
+		}
+
+		span {
+			display: block;
+			width: 3rem;
+			height: 2.5px;
+			background: #fff;
+		}
+	}
+
+	&__title {
+		color: #fff;
+
+		a {
+			color: #fff;
+			text-decoration: none;
+		}
+	}
+
+	&__header-nav {
+		display: none;
+
+		@media (min-width: 768px) {
+			display: block;
+		}
+	}
+
+	&__drawer-nav {
+		height: 100%;
+	}
+}

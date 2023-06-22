@@ -10,7 +10,7 @@ import {
 } from "../../shared/util/validators";
 import { useForm } from "../../shared/hooks/form-hook";
 import { AuthContext } from "../../shared/context/auth-context";
-import "./Auth.css";
+import "./Auth.scss";
 
 const Auth = () => {
 	const auth = useContext(AuthContext);
