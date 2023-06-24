@@ -1,0 +1,27 @@
+@use "./variables" as *;
+
+// DOCUMENT
+@mixin whole-document-rules {
+	*,
+	* ::after,
+	* ::before {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-family: "Avenir Regular";
+	}
+}
+
+// MEDIA QUERIES
+
+@mixin tablet {
+	@media (min-width: $tablet-breakpoint) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media (min-width: $desktop-breakpoint) {
+		@content;
+	}
+}

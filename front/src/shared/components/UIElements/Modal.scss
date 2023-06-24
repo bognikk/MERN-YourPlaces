@@ -1,3 +1,6 @@
+@use "../../../styles//mixins" as *;
+@use "../../../styles/variables" as *;
+
 .modal {
 	position: fixed;
 	top: 22vh;
@@ -6,7 +9,7 @@
 	width: 80%;
 	border-radius: 8px;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-	background: #fff;
+	background: $light;
 
 	@media (min-width: 768px) {
 		left: calc(50% - 20rem);
@@ -16,8 +19,8 @@
 	&__header {
 		width: 100%;
 		padding: 1rem 0.5rem;
-		color: #fff;
-		background: #2a006e;
+		color: $light;
+		background: $primary-darker;
 
 		h2 {
 			margin: 0.5rem;

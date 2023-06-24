@@ -1,3 +1,6 @@
+@use "../../../styles//mixins" as *;
+@use "../../../styles/variables" as *;
+
 .nav-links {
 	display: flex;
 	flex-direction: column;
@@ -15,62 +18,37 @@
 
 	a {
 		padding: 0.5rem;
-		border: 1px solid transparent;
-		color: #292929;
+		border: 2px solid transparent;
+		color: $light;
+		border-radius: 4px;
+		font-weight: 700;
 		text-decoration: none;
 
 		&:hover,
-		&:active,
-		&.active {
-			color: #292929;
-			border-color: #292929;
-			background: #f8df00;
-		}
-	}
-
-	button {
-		padding: 0.5rem;
-		border: 1px solid #292929;
-		color: #292929;
-		background: transparent;
-		font: inherit;
-		cursor: pointer;
-
-		&:focus {
-			outline: none;
-		}
-
-		&:hover,
 		&:active {
-			background: #292929;
-			color: white;
+			color: $light;
+			border-color: $light;
+			background: $primary-darker;
+		}
+
+		&.active {
+			color: $primary-darker;
+			background: $primary;
+
+			&:hover {
+				border-color: $primary;
+				cursor: default;
+			}
 		}
 	}
 }
 
-@media (min-width: 768px) {
+@media (min-width: $tablet-breakpoint) {
 	.nav-links {
 		flex-direction: row;
 
 		li {
 			margin: 0 0.5rem;
-		}
-
-		a {
-			color: white;
-			text-decoration: none;
-		}
-
-		button {
-			border: 1px solid white;
-			color: white;
-			background: transparent;
-
-			&:hover,
-			&:active {
-				background: #f8df00;
-				color: #292929;
-			}
 		}
 	}
 }

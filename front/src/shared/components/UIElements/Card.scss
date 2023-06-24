@@ -1,8 +1,11 @@
+@use "../../../styles//mixins" as *;
+@use "../../../styles/variables" as *;
+
 .card {
 	padding: 1rem;
 	margin: 0;
 	border-radius: 6px;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 	overflow: hidden;
-	background: #fff;
+	background: $light;
 }

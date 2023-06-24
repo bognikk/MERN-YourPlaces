@@ -1,8 +1,13 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
 .place-item {
 	margin: 1rem 0;
 
 	&__content {
 		padding: 0;
+		color: $light;
+		background-color: $primary-darker;
 	}
 
 	&__info {
@@ -21,7 +26,7 @@
 		height: 12.5rem;
 		margin-right: 1.5rem;
 
-		@media (min-width: 768px) {
+		@media (min-width: $tablet-breakpoint) {
 			height: 20rem;
 		}
 

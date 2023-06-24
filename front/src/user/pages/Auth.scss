@@ -1,11 +1,16 @@
+@use "../../styles//mixins" as *;
+@use "../../styles/variables" as *;
+
 .authentication {
 	width: 90%;
 	max-width: 25rem;
 	margin: 7rem auto;
+	color: $light;
 	text-align: center;
+	background-color: $primary-darker;
 
 	&__header {
-		color: #fff;
+		color: $light;
 		text-align: center;
 	}
 

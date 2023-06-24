@@ -1,3 +1,6 @@
+@use "../../../styles//mixins" as *;
+@use "../../../styles/variables" as *;
+
 .form-control {
 	margin: 1rem 0;
 
@@ -16,27 +19,28 @@
 	textarea {
 		width: 100%;
 		padding: 0.15rem 0.25rem;
-		border: 1px solid #ccc;
-		background: #f8f8f8;
+		border: 2px solid $light;
+		background: $light;
 		font: inherit;
 
 		&:focus,
-		&:focus {
-			border-color: #510077;
+		&:active {
+			border-color: $primary-light;
 			outline: none;
-			background: #ebebeb;
+			background: $primary-light;
 		}
 	}
 	&--invalid {
 		label,
 		p {
-			color: red;
+			color: $warning;
+			font-weight: 700;
 		}
 
 		input,
 		textarea {
-			border-color: red;
-			background: #ffd1d1;
+			border-color: $warning;
+			background: $warning;
 		}
 	}
 }
