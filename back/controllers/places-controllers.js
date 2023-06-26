@@ -1,6 +1,6 @@
 const uuid = require("uuid").v4;
 const { request } = require("express");
-const HttpError = require("../models/htto-error");
+const HttpError = require("../models/http-error");
 
 let DUMMY_PLACES = [
 	{
