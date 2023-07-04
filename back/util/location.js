@@ -1,7 +1,7 @@
 const axios = require("axios");
 const HttpError = require("../models/http-error");
-
-const API_KEY = "AIzaSyDMXSo3HKcn7jD7uV5lZYIoZegS6jEVG78";
+require("dotenv").config();
+const API_KEY = process.env.GEOCODE_API_KEY;
 
 async function getCoordsForAddress(address) {
 	const response = await axios.get(
@@ -22,8 +22,6 @@ async function getCoordsForAddress(address) {
 	}
 
 	const coordinates = data.results[0].geometry.location;
-
-	console.log([coordinates]);
 
 	return coordinates;
 }
