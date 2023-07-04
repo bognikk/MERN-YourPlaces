@@ -1,38 +1,40 @@
-const uuid = require("uuid").v4;
+// const uuid = require("uuid").v4;
 const { validationResult } = require("express-validator");
+const mongoose = require("mongoose");
 
 const HttpError = require("../models/http-error");
 const getCoordsForAddress = require("../util/location");
 const Place = require("../models/place");
+const User = require("../models/user");
 
-let DUMMY_PLACES = [
-	{
-		id: "p1",
-		title: "Empire State Building",
-		description: "One of the most famous sky scrapers in the world!",
-		imageUrl:
-			"https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/NYC_Empire_State_Building.jpg/640px-NYC_Empire_State_Building.jpg",
-		address: "20 W 34th St, New York, NY 10001",
-		location: {
-			lat: 40.7484405,
-			lng: -73.9878584,
-		},
-		creator: "u1",
-	},
-	{
-		id: "p2",
-		title: "Empire State Building",
-		description: "One of the most famous sky scrapers in the world!",
-		imageUrl:
-			"https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/NYC_Empire_State_Building.jpg/640px-NYC_Empire_State_Building.jpg",
-		address: "20 W 34th St, New York, NY 10001",
-		location: {
-			lat: 40.7484405,
-			lng: -73.9878584,
-		},
-		creator: "u2",
-	},
-];
+// let DUMMY_PLACES = [
+// 	{
+// 		id: "p1",
+// 		title: "Empire State Building",
+// 		description: "One of the most famous sky scrapers in the world!",
+// 		imageUrl:
+// 			"https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/NYC_Empire_State_Building.jpg/640px-NYC_Empire_State_Building.jpg",
+// 		address: "20 W 34th St, New York, NY 10001",
+// 		location: {
+// 			lat: 40.7484405,
+// 			lng: -73.9878584,
+// 		},
+// 		creator: "u1",
+// 	},
+// 	{
+// 		id: "p2",
+// 		title: "Empire State Building",
+// 		description: "One of the most famous sky scrapers in the world!",
+// 		imageUrl:
+// 			"https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/NYC_Empire_State_Building.jpg/640px-NYC_Empire_State_Building.jpg",
+// 		address: "20 W 34th St, New York, NY 10001",
+// 		location: {
+// 			lat: 40.7484405,
+// 			lng: -73.9878584,
+// 		},
+// 		creator: "u2",
+// 	},
+// ];
 
 // -------------------------------- GET by PLACE id - READ --------------------------------
 const getPlaceById = async (req, res, next) => {
@@ -116,8 +118,29 @@ const createPlace = async (req, res, next) => {
 		creator,
 	});
 
+	let user;
 	try {
-		await createdPlace.save();
+		user = await User.findById(creator);
+	} catch (err) {
+		const error = new HttpError(
+			"Creating place failed, please try again.",
+			500
+		);
+		return next(error);
+	}
+
+	if (!user) {
+		const error = new HttpError("Could not find user for provided id.", 500);
+		return next(error);
+	}
+
+	try {
+		const sess = await mongoose.startSession();
+		sess.startTransaction();
+		await createdPlace.save({ session: sess });
+		user.places.push(createdPlace);
+		await user.save({ session: sess });
+		await sess.commitTransaction();
 	} catch (err) {
 		const error = new HttpError(
 			"Creating place failed, please try again.",
