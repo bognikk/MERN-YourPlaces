@@ -134,7 +134,9 @@ const updatePlace = async (req, res, next) => {
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
 		console.log(errors);
-		throw new HttpError("Invalid inputs passed, please check your data.", 422);
+		return next(
+			new HttpError("Invalid inputs passed, please check your data.", 422)
+		);
 	}
 
 	const { title, description } = req.body;
@@ -176,7 +178,17 @@ const deletePlace = async (req, res, next) => {
 		place = await Place.findById(placeId);
 	} catch (err) {
 		const error = new HttpError(
-			"Something went wrong, could not find a place.",
+			"Something went wrong, could not delete a place.",
+			500
+		);
+		return next(error);
+	}
+
+	try {
+		await place.remove();
+	} catch (err) {
+		const error = new HttpError(
+			"Deleting place failed, something went wrong.",
 			500
 		);
 		return next(error);
