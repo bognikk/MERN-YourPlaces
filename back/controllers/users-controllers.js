@@ -12,10 +12,12 @@ const DUMMY_USERS = [
 	},
 ];
 
+// -------------------------------- GET --------------------------------
 const getUsers = (req, res, next) => {
 	res.json({ users: DUMMY_USERS });
 };
 
+// -------------------------------- SIGNUP --------------------------------
 const signup = (req, res, next) => {
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
@@ -43,6 +45,7 @@ const signup = (req, res, next) => {
 	res.status(201).json({ user: createdUser });
 };
 
+// -------------------------------- LOGIN --------------------------------
 const login = (req, res, next) => {
 	const { email, password } = req.body;
 
