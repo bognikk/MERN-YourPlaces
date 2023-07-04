@@ -34,6 +34,7 @@ let DUMMY_PLACES = [
 	},
 ];
 
+// -------------------------------- GET by PLACE id - READ --------------------------------
 const getPlaceById = async (req, res, next) => {
 	const placeId = req.params.placeId; // {placeId: 'p1'}
 
@@ -59,6 +60,7 @@ const getPlaceById = async (req, res, next) => {
 	res.json({ place: place.toObject({ getters: true }) }); // getters: true returns _id to just id
 };
 
+// -------------------------------- GET by USER id - READ --------------------------------
 const getPlacesByUserId = async (req, res, next) => {
 	const userId = req.params.userId;
 
@@ -85,6 +87,7 @@ const getPlacesByUserId = async (req, res, next) => {
 	}); // getters: true returns _id to just id
 };
 
+// -------------------------------- POST - CREATE --------------------------------
 const createPlace = async (req, res, next) => {
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
@@ -126,6 +129,7 @@ const createPlace = async (req, res, next) => {
 	res.status(201).json({ place: createdPlace });
 };
 
+// -------------------------------- PATCH - UPDATE --------------------------------
 const updatePlace = async (req, res, next) => {
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
@@ -163,12 +167,20 @@ const updatePlace = async (req, res, next) => {
 	res.status(200).json({ place: place.toObject({ getters: true }) });
 };
 
-const deletePlace = (req, res, next) => {
+// -------------------------------- DELETE - DELETE --------------------------------
+const deletePlace = async (req, res, next) => {
 	const placeId = req.params.placeId;
-	if (!DUMMY_PLACES.find((p) => p.id === placeId)) {
-		throw new HttpError("Could not find a place for that id.", 404);
+
+	let place;
+	try {
+		place = await Place.findById(placeId);
+	} catch (err) {
+		const error = new HttpError(
+			"Something went wrong, could not find a place.",
+			500
+		);
+		return next(error);
 	}
-	DUMMY_PLACES = DUMMY_PLACES.filter((p) => p.id !== placeId);
 
 	res.status(200).json({ message: "Deleted place." });
 };
