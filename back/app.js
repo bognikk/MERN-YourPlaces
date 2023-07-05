@@ -42,7 +42,7 @@ app.use((error, req, res, next) => {
 
 mongoose
 	.connect(
-		`mongodb+srv://nikola:${DATABASE_PASSWORD}@cluster0.soncsra.mongodb.net/places?retryWrites=true&w=majority`
+		`mongodb+srv://nikola:${DATABASE_PASSWORD}@cluster0.soncsra.mongodb.net/mern?retryWrites=true&w=majority`
 	)
 	.then(() => {
 		app.listen(5000);
