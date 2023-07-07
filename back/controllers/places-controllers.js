@@ -11,7 +11,7 @@ const User = require("../models/user");
 // 	{
 // 		id: "p1",
 // 		title: "Empire State Building",
-// 		description: "One of the most famous sky scrapers in the world!",
+// 		description: "One of the most famous skyscrapers in the world!",
 // 		imageUrl:
 // 			"https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/NYC_Empire_State_Building.jpg/640px-NYC_Empire_State_Building.jpg",
 // 		address: "20 W 34th St, New York, NY 10001",
@@ -24,7 +24,7 @@ const User = require("../models/user");
 // 	{
 // 		id: "p2",
 // 		title: "Empire State Building",
-// 		description: "One of the most famous sky scrapers in the world!",
+// 		description: "One of the most famous skyscrapers in the world!",
 // 		imageUrl:
 // 			"https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/NYC_Empire_State_Building.jpg/640px-NYC_Empire_State_Building.jpg",
 // 		address: "20 W 34th St, New York, NY 10001",
@@ -113,8 +113,7 @@ const createPlace = async (req, res, next) => {
 		description,
 		location: coordinates,
 		address,
-		image:
-			"https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/NYC_Empire_State_Building.jpg/640px-NYC_Empire_State_Building.jpg",
+		image: req.file.path,
 		creator,
 	});
 
