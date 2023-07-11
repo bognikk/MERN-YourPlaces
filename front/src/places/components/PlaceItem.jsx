@@ -40,7 +40,7 @@ const PlaceItem = (props) => {
 	};
 
 	return (
-		<React.Fragment>
+		<>
 			<ErrorModal error={error} onClear={clearError} />
 
 			<Modal
@@ -105,7 +105,7 @@ const PlaceItem = (props) => {
 					</div>
 				</Card>
 			</li>
-		</React.Fragment>
+		</>
 	);
 };
 

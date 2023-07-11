@@ -98,7 +98,7 @@ const UpdatePlace = () => {
 	}
 
 	return (
-		<React.Fragment>
+		<>
 			<ErrorModal error={error} onClear={clearError} />
 			{!isLoading && loadedPlace && (
 				<form className="place-form" onSubmit={placeUpdateSubmitHandler}>
@@ -128,7 +128,7 @@ const UpdatePlace = () => {
 					</Button>
 				</form>
 			)}
-		</React.Fragment>
+		</>
 	);
 };
 
