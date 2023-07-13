@@ -127,3 +127,5 @@ dist
 .pnp.*
 
 back/uploads
+
+nodemon.json

@@ -5,7 +5,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const DATABASE_USER = process.env.DATABASE_USER;
 const DATABASE_PASSWORD = process.env.DATABASE_PASSWORD;
+const DATABASE_NAME = process.env.DATABASE_NAME;
 
 const placesRoutes = require("./routes/places-routes");
 const usersRoutes = require("./routes/users-routes");
@@ -52,7 +54,7 @@ app.use((error, req, res, next) => {
 
 mongoose
 	.connect(
-		`mongodb+srv://nikola:${DATABASE_PASSWORD}@cluster0.soncsra.mongodb.net/mern?retryWrites=true&w=majority`
+		`mongodb+srv://${DATABASE_USER}:${DATABASE_PASSWORD}@cluster0.soncsra.mongodb.net/${DATABASE_NAME}?retryWrites=true&w=majority`
 	)
 	.then(() => {
 		app.listen(5000);
